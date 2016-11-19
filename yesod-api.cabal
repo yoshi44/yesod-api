@@ -25,6 +25,7 @@ library
                      Handler.Comment
                      Handler.Profile
                      Handler.Message
+                     Handler.Gold
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
@@ -93,6 +94,11 @@ library
                  , case-insensitive
                  , wai
 
+                 , html-conduit
+                 , http-conduit
+                 , utf8-string
+                 , xml-conduit
+ 
 executable         yesod-api
     if flag(library-only)
         Buildable: False

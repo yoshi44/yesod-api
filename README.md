@@ -14,4 +14,15 @@ cd /usr/local/Cellar/mysql
 ln -s /usr/local/Cellar/mysql/5.7.16 5.7.14
 ```
 
+Add handler
+
+```
+stack exec -- yesod add-handler
+```
+
+```
+ghc-pkg find-module Text.HTML.Scalpel
+stack install scalpel
+Add "scalpel" build-depends in the .cabal file
+```
 

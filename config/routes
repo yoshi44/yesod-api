@@ -10,3 +10,5 @@
 
 /profile ProfileR GET
 /message MessageR GET POST
+/metalInfo MetalInfoR GET
+

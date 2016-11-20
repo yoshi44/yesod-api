@@ -25,7 +25,7 @@ library
                      Handler.Comment
                      Handler.Profile
                      Handler.Message
-                     Handler.Gold
+                     Handler.MetalInfo
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT

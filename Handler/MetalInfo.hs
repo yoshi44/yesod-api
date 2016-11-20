@@ -1,4 +1,4 @@
-module Handler.Gold where
+module Handler.MetalInfo where
 
 import Import
 
@@ -20,8 +20,8 @@ instance ToJSON MetalInfo where
      ,"pt" .= pt
     ]
 
-getGoldR :: Handler Value
-getGoldR = do
+getMetalInfoR :: Handler Value
+getMetalInfoR = do
   putStrLn "----- do start -----"
   doc <- parseLBS <$> simpleHttp "http://gold.tanaka.co.jp/commodity/souba/english/"
   let root = fromDocument doc

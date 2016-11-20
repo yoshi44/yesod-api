@@ -1,4 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
 module Handler.Gold where
 
 import Import
@@ -9,39 +8,47 @@ import Network.HTTP.Conduit
 import qualified Data.Text as T
 
 data MetalInfo = MetalInfo
-  { name :: Text
-  , age  :: Int
-  , gold :: [Text]
+  {
+    gold :: [Text]
+   ,pt :: [Text]
   }
+
 instance ToJSON MetalInfo where
-    toJSON MetalInfo {..} = object
-        [ "name" .= name
-        , "age"  .= age
-        , "gold" .= gold
-        ]
+  toJSON MetalInfo {..} = object
+    [
+      "gold" .= gold
+     ,"pt" .= pt
+    ]
+
 getGoldR :: Handler Value
 getGoldR = do
   putStrLn "----- do start -----"
-  doc <- parseLBS <$> simpleHttp "http://gold.tanaka.co.jp/index.php"
+  doc <- parseLBS <$> simpleHttp "http://gold.tanaka.co.jp/commodity/souba/english/"
   let root = fromDocument doc
-  let entries = pickUpMetalInfo root
-  print entries
-  putStrLn (unwords entries)
-  --let entriesStr = unwords entries
-  let gold = entries
+  let goldInfo = pickUpGoldInfo root
+  let ptInfo = pickUpPtInfo root
   putStrLn "----- do end -----"
-  returnJson $ MetalInfo "Michael" 28 gold
+  returnJson $ MetalInfo goldInfo ptInfo
 
-pickUpMetalInfo :: Cursor -> [T.Text]
-pickUpMetalInfo info = info $// element "div"
-                            >=> attributeIs "id" "soba_info"
+pickUpGoldInfo :: Cursor -> [T.Text]
+pickUpGoldInfo info = info $// element "table"
+                            >=> attributeIs "id" "metal_price"
                             >=> child
-                            >=> element "ul"
+                            >=> element "tr"
+                            >=> attributeIs "class" "gold"
                             >=> child
-                            >=> element "li"
+                            >=> element "td"
+                            >=> attributeIs "class" "retail_tax"
+                            &// content
+
+pickUpPtInfo :: Cursor -> [T.Text]
+pickUpPtInfo info = info $// element "table"
+                            >=> attributeIs "id" "metal_price"
                             >=> child
-                            >=> element "a"
+                            >=> element "tr"
+                            >=> attributeIs "class" "pt"
                             >=> child
-                            >=> element "span"
+                            >=> element "td"
+                            >=> attributeIs "class" "retail_tax"
                             &// content
 

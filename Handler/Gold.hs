@@ -8,6 +8,17 @@ import Text.HTML.DOM
 import Network.HTTP.Conduit
 import qualified Data.Text as T
 
+data MetalInfo = MetalInfo
+  { name :: Text
+  , age  :: Int
+  , gold :: [Text]
+  }
+instance ToJSON MetalInfo where
+    toJSON MetalInfo {..} = object
+        [ "name" .= name
+        , "age"  .= age
+        , "gold" .= gold
+        ]
 getGoldR :: Handler Value
 getGoldR = do
   putStrLn "----- do start -----"
@@ -16,8 +27,10 @@ getGoldR = do
   let entries = pickUpMetalInfo root
   print entries
   putStrLn (unwords entries)
+  --let entriesStr = unwords entries
+  let gold = entries
   putStrLn "----- do end -----"
-  return $ object ["gold" .= (String "bbb") ]
+  returnJson $ MetalInfo "Michael" 28 gold
 
 pickUpMetalInfo :: Cursor -> [T.Text]
 pickUpMetalInfo info = info $// element "div"

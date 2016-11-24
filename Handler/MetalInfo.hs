@@ -9,8 +9,8 @@ import qualified Data.Text as T
 
 data MetalInfo = MetalInfo
   {
-    gold :: [Text]
-   ,pt :: [Text]
+    gold :: Text
+   ,pt :: Text
   }
 
 instance ToJSON MetalInfo where
@@ -25,8 +25,8 @@ getMetalInfoR = do
   putStrLn "----- do start -----"
   doc <- parseLBS <$> simpleHttp "http://gold.tanaka.co.jp/commodity/souba/english/"
   let root = fromDocument doc
-  let goldInfo = pickUpGoldInfo root
-  let ptInfo = pickUpPtInfo root
+  let goldInfo = unwords (pickUpGoldInfo root)
+  let ptInfo = unwords (pickUpPtInfo root)
   putStrLn "----- do end -----"
   returnJson $ MetalInfo goldInfo ptInfo
 

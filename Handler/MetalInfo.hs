@@ -25,30 +25,19 @@ getMetalInfoR = do
   putStrLn "----- do start -----"
   doc <- parseLBS <$> simpleHttp "http://gold.tanaka.co.jp/commodity/souba/english/"
   let root = fromDocument doc
-  let goldInfo = unwords (pickUpGoldInfo root)
-  let ptInfo = unwords (pickUpPtInfo root)
+  let goldInfo = unwords (pickUpMetalInfo root "gold")
+  let ptInfo = unwords (pickUpMetalInfo root "pt")
   putStrLn "----- do end -----"
   returnJson $ MetalInfo goldInfo ptInfo
 
-pickUpGoldInfo :: Cursor -> [T.Text]
-pickUpGoldInfo info = info $// element "table"
-                            >=> attributeIs "id" "metal_price"
-                            >=> child
-                            >=> element "tr"
-                            >=> attributeIs "class" "gold"
-                            >=> child
-                            >=> element "td"
-                            >=> attributeIs "class" "retail_tax"
-                            &// content
-
-pickUpPtInfo :: Cursor -> [T.Text]
-pickUpPtInfo info = info $// element "table"
-                            >=> attributeIs "id" "metal_price"
-                            >=> child
-                            >=> element "tr"
-                            >=> attributeIs "class" "pt"
-                            >=> child
-                            >=> element "td"
-                            >=> attributeIs "class" "retail_tax"
-                            &// content
+pickUpMetalInfo :: Cursor -> Text -> [T.Text]
+pickUpMetalInfo info metalType = info $// element "table"
+                             >=> attributeIs "id" "metal_price"
+                             >=> child
+                             >=> element "tr"
+                             >=> attributeIs "class" metalType
+                             >=> child
+                             >=> element "td"
+                             >=> attributeIs "class" "retail_tax"
+                             &// content
 

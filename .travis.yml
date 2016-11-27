@@ -37,8 +37,7 @@ before_script:
   - stack update
   - stack build yesod-bin cabal-install --no-install-ghc
   - stack build
-  - export MYSQL_USER=root && stack exec -- yesod devel
-  - stack test
+  - export MYSQL_USER=root && stack exec -- yesod devel | stack test
 before_install:
   # Download and unpack the stack executable
   - mkdir -p ~/.local/bin

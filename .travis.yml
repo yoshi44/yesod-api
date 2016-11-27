@@ -35,9 +35,9 @@ before_script:
     CONSTRAINT comment_user_id_fkey FOREIGN KEY (user_id) REFERENCES user (id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;"
   - stack update
+  - stack setup
   - stack build yesod-bin cabal-install
   - stack build
-  - export MYSQL_USER=root && stack exec -- yesod devel & stack test
 before_install:
   # Download and unpack the stack executable
   - mkdir -p ~/.local/bin
@@ -47,6 +47,6 @@ install:
   - echo "install target"
 script:
   - echo "script target"
-
+  - export MYSQL_USER=root && stack exec -- yesod devel & stack test
 services:
   - mysql

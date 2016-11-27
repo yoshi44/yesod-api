@@ -6,6 +6,6 @@ database:
   # something like:
   #
   #   database: "_env:MYSQL_DATABASE:yesod-api_test"
-  database: yesod-api_test
+  database: yesodapi_test
 
 auth-dummy-login: true

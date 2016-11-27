@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/yoshi44/yesod-api.svg?branch=master)](https://travis-ci.org/yoshi44/yesod-api)
+
+# Yesod API application
 
 stack build error
 

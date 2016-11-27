@@ -1,0 +1,52 @@
+sudo: false
+
+language: haskell
+
+# Caching so the next build will be fast too.
+cache:
+  directories:
+  - $HOME/.stack
+before_script:
+  - mysql -uroot -e 'create database yesodapi;'
+  - mysql -uroot -e 'create database yesodapi_test;'
+  - mysql -uroot -e "use yesodapi_test; CREATE TABLE user (
+    id bigint(20) NOT NULL AUTO_INCREMENT,
+    ident text NOT NULL,
+    password text,
+    PRIMARY KEY (id),
+    UNIQUE KEY unique_user (ident(200))
+    ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;"
+  - mysql -uroot -e "use yesodapi_test; CREATE TABLE email (
+    id bigint(20) NOT NULL AUTO_INCREMENT,
+    email text NOT NULL,
+    user_id bigint(20) DEFAULT NULL,
+    verkey text,
+    PRIMARY KEY (id),
+    UNIQUE KEY unique_email (email(200)),
+    KEY email_user_id_fkey (user_id),
+    CONSTRAINT email_user_id_fkey FOREIGN KEY (user_id) REFERENCES user (id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;"
+  - mysql -uroot -e "use yesodapi_test; CREATE TABLE comment (
+    id bigint(20) NOT NULL AUTO_INCREMENT,
+    message text NOT NULL,
+    user_id bigint(20) DEFAULT NULL,
+    PRIMARY KEY (id),
+    KEY comment_user_id_fkey (user_id),
+    CONSTRAINT comment_user_id_fkey FOREIGN KEY (user_id) REFERENCES user (id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;"
+  - stack update
+  - stack setup
+  - stack build yesod-bin cabal-install
+  - stack build
+before_install:
+  # Download and unpack the stack executable
+  - mkdir -p ~/.local/bin
+  - export PATH=$HOME/.local/bin:$PATH
+  - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+install:
+  - echo "install target"
+script:
+  - echo "script target"
+  - export MYSQL_USER=root && stack exec -- yesod devel & stack test
+services:
+  - mysql

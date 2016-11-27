@@ -13,6 +13,12 @@ cd /usr/local/Cellar/mysql
 
 ln -s /usr/local/Cellar/mysql/5.7.16 5.7.14
 ```
+Setting MySql for test
+
+```
+create user yoshi@localhost identified by 'pass';
+grant all on yesodapi_test.* to yoshi@localhost identified by 'pass';
+```
 
 Start MySql
 

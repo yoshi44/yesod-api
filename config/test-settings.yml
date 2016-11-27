@@ -7,5 +7,6 @@ database:
   #
   #   database: "_env:MYSQL_DATABASE:yesod-api_test"
   database: yesodapi_test
+  user:     "_env:MYSQL_USER:root"
 
 auth-dummy-login: true

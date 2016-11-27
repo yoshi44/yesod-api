@@ -2,6 +2,8 @@
 
 # Yesod API application
 
+NOTE
+
 stack build error
 
 ```

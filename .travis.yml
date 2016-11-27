@@ -7,7 +7,7 @@ cache:
   directories:
   - $HOME/.stack
 before_script:
-  - mysql -e 'create database yesodapi_test;'
+  - mysql -uroot -e 'create database yesodapi_test;'
 before_install:
   # Download and unpack the stack executable
   - mkdir -p ~/.local/bin

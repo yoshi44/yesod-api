@@ -35,7 +35,8 @@ before_script:
     CONSTRAINT comment_user_id_fkey FOREIGN KEY (user_id) REFERENCES user (id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;"
   - stack update
-  - stack build yesod-bin --no-install-ghc
+  - stack build yesod-bin cabal-install --no-install-ghc
+  - stack build
   - stack exec -- yesod devel
 before_install:
   # Download and unpack the stack executable

@@ -4,8 +4,3 @@ before_script:
 script:
   - stack test
 
-notifications:
-  emails:
-    - yoshimasakinoshita@gamil.com
-  on_success: always # default: change
-  on_failure: always

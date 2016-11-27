@@ -2,6 +2,7 @@ language: haskell
 before_script:
   - echo "before script 1"
 install:
+  - stack setup
   - stack install --enable-tests
 after_install:
   - stack build

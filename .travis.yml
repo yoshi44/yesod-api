@@ -9,6 +9,23 @@ cache:
 before_script:
   - mysql -uroot -e 'create database yesodapi_test;'
   - mysql -uroot -e 'use yesodapi_test; show tables;'
+  - mysql -uroot -e "use yesodapi_test; CREATE TABLE email (
+    id bigint(20) NOT NULL AUTO_INCREMENT,
+    email text NOT NULL,
+    user_id bigint(20) DEFAULT NULL,
+    verkey text,
+    PRIMARY KEY (id),
+    UNIQUE KEY unique_email (email(200)),
+    KEY email_user_id_fkey (user_id),
+    CONSTRAINT email_user_id_fkey FOREIGN KEY (user_id) REFERENCES user (id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;"
+  - mysql -uroot -e "use yesodapi_test; CREATE TABLE user (
+    id bigint(20) NOT NULL AUTO_INCREMENT,
+    ident text NOT NULL,
+    password text,
+    PRIMARY KEY (id),
+    UNIQUE KEY unique_user (ident(200))
+    ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;"
   - mysql -uroot -e "use yesodapi_test; CREATE TABLE comment (
     id bigint(20) NOT NULL AUTO_INCREMENT,
     message text NOT NULL,

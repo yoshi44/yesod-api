@@ -117,6 +117,8 @@ test-suite test
                        Handler.HomeSpec
                        Handler.ProfileSpec
                        TestImport
+                       Handler.MessageSpec
+                       Handler.MetalInfoSpec
     hs-source-dirs:    test
     ghc-options:       -Wall
 

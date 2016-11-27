@@ -6,9 +6,7 @@ spec :: Spec
 spec = withApp $ do
 
     describe "getMessageR" $ do
-        error "Spec not implemented: getMessageR"
-
-
-    describe "postMessageR" $ do
-        error "Spec not implemented: postMessageR"
+      it "gives a 200" $ do
+        get MessageR
+        statusIs 200
 

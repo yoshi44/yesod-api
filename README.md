@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/yoshi44/yesod-api.svg?branch=master)](https://travis-ci.org/yoshi44/yesod-api)
-[![Coverage Status](https://coveralls.io/repos/github/yoshi44/yesod-api/badge.svg)](https://coveralls.io/github/yoshi44/yesod-api)
+
 # Yesod API application
 
 NOTE

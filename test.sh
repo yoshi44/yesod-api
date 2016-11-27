@@ -1,1 +1,1 @@
-export MYSQL_USER=yoshi && export MYSQL_PASSWORD=pass && stack exec -- yesod devel | stack test
+export MYSQL_USER=yoshi && export MYSQL_PASSWORD=pass && stack exec -- yesod devel & stack test

@@ -1,0 +1,11 @@
+language: haskell
+before_script:
+  - echo "before script 1"
+script:
+  - stack test
+
+notifications:
+  emails:
+    - yoshimasakinoshita@gamil.com
+  on_success: always # default: change
+  on_failure: always

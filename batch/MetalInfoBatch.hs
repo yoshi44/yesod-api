@@ -37,7 +37,7 @@ main :: IO ()
 main = do
   print "----- do start -----"
   manager <- newManager defaultManagerSettings
-  let request = setRequestManager manager "http://localhost:3000/metalInfo"
+  let request = setRequestManager manager "http://localhost:4444/metalInfo"
   response <- httpLBS request
 
   putStrLn $ "The status code was: " ++ show (getResponseStatusCode response)
@@ -49,7 +49,7 @@ main = do
   print goldValue'
   print ptValue'
 
-  exeMail "mailaddress" goldValue' ptValue'
+  exeMail "mailaddress@gmail.com" goldValue' ptValue'
 
   print "----- do end -----"
 

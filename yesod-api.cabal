@@ -26,6 +26,7 @@ library
                      Handler.Profile
                      Handler.Message
                      Handler.MetalInfo
+                     Handler.Email
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT

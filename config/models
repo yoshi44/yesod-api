@@ -3,7 +3,7 @@ User
     password Text Maybe
     UniqueUser ident
     deriving Typeable
-Email
+Email json
     email Text
     userId UserId Maybe
     verkey Text Maybe

@@ -12,3 +12,4 @@
 /message MessageR GET POST
 /metalInfo MetalInfoR GET
 
+/email EmailR GET

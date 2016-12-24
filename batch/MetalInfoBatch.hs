@@ -27,7 +27,7 @@ exeMail address gold pt = do
                       \ mailTemplate test  \n\
                       \ aaa test"
 
-  let body = "Today Information: " ++ show gold
+  let body = "Today Information: " ++ "Gold=" ++ show gold ++ "Platinum=" ++ show pt
   let title = "title test"
   let cmd = mailCommand (show body) (show title) address
 

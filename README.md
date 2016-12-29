@@ -4,13 +4,19 @@
 
 NOTE
 
-stack install and setup
+`stack` install and setup
 
 ```
 brew install haskell-stack
 ```
 ```
 stack setup
+```
+
+[Yesod setup](http://www.yesodweb.com/page/quickstart)
+
+```
+stack build yesod-bin cabal-install --install-ghc
 ```
 
 stack build error

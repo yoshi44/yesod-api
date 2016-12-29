@@ -47,6 +47,7 @@ ln -s /usr/local/Cellar/mysql/5.7.16 5.7.14
 
 ```
 create user yoshi@localhost identified by 'pass';
+grant all on yesodapi.* to yoshi@localhost identified by 'pass';
 grant all on yesodapi_test.* to yoshi@localhost identified by 'pass';
 ```
 

@@ -12,7 +12,7 @@ brew install haskell-stack
 ```
 stack setup
 ```
-#### MySQL Clinet setup
+#### MySQL Client setup
 
 ```
 brew install mysql --client-only

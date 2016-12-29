@@ -19,6 +19,10 @@ stack setup
 stack build yesod-bin cabal-install --install-ghc
 ```
 
+```
+stack build
+```
+
 #### stack build error
 
 ```

@@ -4,8 +4,13 @@
 
 NOTE
 
+stack install and setup
+
 ```
 brew install haskell-stack
+```
+```
+stack setup
 ```
 
 stack build error

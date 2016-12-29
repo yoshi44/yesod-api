@@ -12,6 +12,11 @@ brew install haskell-stack
 ```
 stack setup
 ```
+#### MySQL Clinet setup
+
+```
+brew install mysql --client-only
+```
 
 #### [Yesod setup](http://www.yesodweb.com/page/quickstart)
 

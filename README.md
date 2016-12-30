@@ -53,8 +53,13 @@ grant all on yesodapi_test.* to yoshi@localhost identified by 'pass';
 
 #### Start MySql
 
+#### Mac
 ```
 mysql.server start
+```
+#### Debian
+```
+sudo /etc/init.d/mysql start
 ```
 
 #### Add handler

@@ -42,6 +42,12 @@ cd /usr/local/Cellar/mysql
 
 ln -s /usr/local/Cellar/mysql/5.7.16 5.7.14
 ```
+#### Login Docker MySql
+
+```
+docker ps
+docker exec -it ${docker_ps_container_id} bash
+```
 
 #### Setting MySql for test
 

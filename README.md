@@ -57,6 +57,12 @@ grant all on yesodapi.* to yoshi@localhost identified by 'pass';
 grant all on yesodapi_test.* to yoshi@localhost identified by 'pass';
 ```
 
+#### Create database
+
+```
+create database yesodapi
+```
+
 #### Start MySql
 
 #### Mac
